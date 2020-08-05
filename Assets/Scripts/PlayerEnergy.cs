@@ -15,6 +15,7 @@ public class PlayerEnergy : MonoBehaviour
     float RandomDecreaseRate;
     float temp = 5;
     float timeToIncreaseRate = 15f;
+    float IncreaseRate = 0;
     RaycastHit2D hit;
     Animator m_Animator;
 
@@ -53,15 +54,16 @@ public class PlayerEnergy : MonoBehaviour
                 }
             }
 
-            if (this.transform.tag == "Targeted")
+            if (this.transform.tag == "Targeted" )
             {
-                m_Slider.value = m_Slider.value - RandomDecreaseRate + AnswerChecker.Instance.PlusDecreaseVal;
                 Pointer.SetActive(true);
+                if(AnswerChecker.Instance.IsTargeted)
+                    m_Slider.value = m_Slider.value - RandomDecreaseRate + AnswerChecker.Instance.PlusDecreaseVal + IncreaseRate;
             }
             else if (this.transform.tag == "Player")
             {
-                m_Slider.value = m_Slider.value - RandomDecreaseRate;
                 Pointer.SetActive(false);
+                m_Slider.value = m_Slider.value - RandomDecreaseRate;
             }
 
             FillColorAndAnimationChange();
@@ -78,6 +80,7 @@ public class PlayerEnergy : MonoBehaviour
 
             if (timeToIncreaseRate <= 0)
             {
+                IncreaseRate += 5;
                 RandomDecreaseRate += 0.02f;
                 timeToIncreaseRate = 15f;
                 StartCoroutine(InfectiousRate());

@@ -15,7 +15,10 @@ public class AnswerChecker : MonoBehaviour
 
     //public variables
     [HideInInspector]
-    public int PlusDecreaseVal = 0;
+    public int PlusDecreaseVal = 20;
+    [HideInInspector]
+    public bool IsTargeted = false;
+    [HideInInspector]
     public int CorrectAnswer = 0;
     //public int Missed = 0;
 
@@ -38,6 +41,7 @@ public class AnswerChecker : MonoBehaviour
             {
                 RightAnswer();
                 PlusDecreaseVal = 20;
+                IsTargeted = true;
                 CorrectAnswer++;
             }
             else
@@ -48,6 +52,7 @@ public class AnswerChecker : MonoBehaviour
         else
         {
             PlusDecreaseVal = 0;
+            IsTargeted = false;
             if (!RightButtonPressed && CollisionCounter == 0)
             {
                 WrongAnswer();
@@ -57,7 +62,6 @@ public class AnswerChecker : MonoBehaviour
                 DefaultBar();
             }
         }
-
     }
 
 

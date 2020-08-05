@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         float sscore = Mathf.Ceil(timer) * 100 + AnswerChecker.Instance.CorrectAnswer * 10;
         scoreText.text = "SCORE: " + sscore.ToString();
-        HighScoreText.text = "HIGHESTSCORE: " + PlayerPrefs.GetFloat("HighScore").ToString();
+        HighScoreText.text = "HIGHEST SCORE: " + PlayerPrefs.GetFloat("HighScore").ToString();
 
         if (sscore > highsscore)
         {
@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
     public void resume()
     {
         PauseMenu.SetActive(false);
+        SettingsPanel.SetActive(false);
         Time.timeScale = 1;
         cnt = 0;
     }
